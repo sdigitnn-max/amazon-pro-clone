@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon Secure Payment</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .payment-container {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #111;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .amount-display {
+            font-size: 24px;
+            color: #B12704;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .method-header {
+            background: #f8f8f8;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .method-content {
+            padding: 15px;
+            display: none;
+        }
+
+        .method-content.active {
+            display: block;
+        }
+
+        .upi-apps {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .upi-btn {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 85px;
+        }
+
+        .upi-btn:hover {
+            border-color: #e77600;
+            box-shadow: 0 0 5px rgba(231, 118, 0, 0.5);
+        }
+
+        .upi-btn img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .manual-upi-box {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .manual-upi-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .card-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-pay {
+            background: #ffd814;
+            border: 1px solid #fcd200;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-pay:hover {
+            background: #f7ca00;
+        }
+
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #success-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #198754;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .icon-circle {
+            width: 120px;
+            height: 120px;
+            background-color: #0d6efd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 4px solid white;
+        }
+
+        .icon-tick {
+            color: #dc3545;
+            font-size: 80px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .order-id-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <h2>Select Payment Method</h2>
+        <div class="amount-display" id="pay-amount">Amount to Pay: ₹0</div>
+
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('upi')">UPI (GPay, PhonePe, Paytm)</div>
+            <div class="method-content active" id="upi-section">
+                <p style="font-size: 13px; color: #555; text-align: center;">Click an app to open it on your phone</p>
+                <div class="upi-apps">
+                    <button class="upi-btn" onclick="initiateAppUPI('Google Pay')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay">
+                        <span style="font-size: 11px;">GPay</span>
+                    </button>
+                    <button class="upi-btn" onclick="initiateAppUPI('PhonePe')">
+                        <img src="https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png" alt="PhonePe">
+                        <span style="font-size: 11px;">PhonePe</span>
+                    </button>
+                    <button class="upi-btn" onclick="initiateAppUPI('Paytm')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg"
+                            alt="Paytm">
+                        <span style="font-size: 11px;">Paytm</span>
+                    </button>
+                </div>
+                <div class="manual-upi-box">
+                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 10px;">Or enter your UPI ID</p>
+                    <input type="text" id="manualUpiId" class="manual-upi-input" placeholder="e.g. 9876543210@ybl">
+                    <button class="btn-pay" onclick="initiateManualUPI()">Verify & Pay</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('card')">Credit / Debit Card</div>
+            <div class="method-content" id="card-section">
+                <input type="text" class="card-input" placeholder="Card Number" maxlength="16">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" class="card-input" placeholder="MM/YY">
+                    <input type="password" class="card-input" placeholder="CVV" maxlength="3">
+                </div>
+                <button class="btn-pay" onclick="simulateGeneralPayment('Card Payment')">Pay via Card</button>
+            </div>
+        </div>
+
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('cod')">Cash on Delivery (COD)</div>
+            <div class="method-content" id="cod-section">
+                <p style="font-size: 14px; color: #333;">Pay by cash or UPI to the delivery agent when your order
+                    arrives.</p>
+                <button class="btn-pay" onclick="processCOD()">Place Order (COD)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADER WITH TIMER & TEST CONTROLS -->
+    <div id="loader">
+        <h3 style="color: #333; margin-top: 10px;" id="loader-title">Waiting for Payment</h3>
+        <p style="font-size: 14px; color: #666;" id="loader-subtitle">Please approve the payment on your UPI app.</p>
+        <div id="timer-display" style="font-size: 36px; font-weight: bold; color: #B12704; margin: 20px 0;">05:00</div>
+
+        <!-- Frontend Developer Test Controls -->
+        <div style="background: #f8f8f8; padding: 15px; border: 1px dashed #ccc; border-radius: 8px; margin-top: 20px;">
+            <p style="font-size: 12px; color: #888; margin-bottom: 10px;">(Developer Testing Controls)</p>
+            <button onclick="forcePaymentSuccess()"
+                style="background: #198754; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 5px;">Simulate
+                Success</button>
+            <button onclick="forcePaymentFail()"
+                style="background: #dc3545; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 5px;">Simulate
+                Fail</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS OVERLAY -->
+    <div id="success-screen">
+        <div class="icon-circle"><span class="icon-tick">✔</span></div>
+        <h1 style="font-size: 32px; margin-bottom: 10px;">Order Placed Successfully!</h1>
+        <p style="font-size: 18px; margin-bottom: 10px;">Thank you for shopping with Amazon.</p>
+        <div class="order-id-box">
+            <span style="font-size: 14px; text-transform: uppercase;">Transaction / Order ID</span><br>
+            <strong id="display-order-id"
+                style="font-size: 26px; font-family: monospace; letter-spacing: 2px;"></strong>
+        </div>
+        <p style="margin-top: 40px; font-size: 15px; font-weight: bold; animation: blink 1.5s infinite;">Redirecting to
+            your orders page...</p>
+    </div>
+
+    <script>
+        let totalAmount = localStorage.getItem('checkoutTotal') || 0;
+        document.getElementById('pay-amount').innerText = "Amount to Pay: ₹" + parseFloat(totalAmount).toLocaleString('en-IN');
+        let timerInterval;
+        let currentMethodName = "";
+
+        function toggleMethod(method) {
+            document.querySelectorAll('.method-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(method + '-section').classList.add('active');
+        }
+
+        // SAVE ORDER FUNCTION
+        function triggerSuccessScreen(paymentMethod, txnId) {
+            let orderId = "ORD-" + Math.floor(Math.random() * 90000000 + 10000000);
+            document.getElementById('display-order-id').innerText = orderId;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let address = localStorage.getItem('customerAddress') || 'No Address Provided';
+            let userName = localStorage.getItem('userName') || 'Guest User';
+
+            let d = new Date();
+            let orderDate = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+            d.setDate(d.getDate() + 1);
+            let shipDate = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+            d.setDate(d.getDate() + 6);
+            let deliveryDate = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            let newOrder = {
+                orderId: orderId, userName: userName, address: address,
+                totalAmount: totalAmount, items: cart, orderDate: orderDate,
+                shipDate: shipDate, deliveryDate: deliveryDate, status: 0,
+                paymentMethod: paymentMethod, txnId: txnId
+            };
+
+            let allOrders = JSON.parse(localStorage.getItem('allOrders')) || [];
+            allOrders.push(newOrder);
+            localStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'flex';
+            localStorage.setItem('cart', '[]');
+            setTimeout(() => { window.location.href = 'orders.html'; }, 4000);
+        }
+
+        // START 5 MIN TIMER
+        function startTimer(methodName) {
+            currentMethodName = methodName;
+            document.getElementById('loader').style.display = 'flex';
+            document.getElementById('loader-title').innerText = "Waiting for " + methodName;
+
+            let timeLeft = 300;
+            let display = document.getElementById('timer-display');
+
+            timerInterval = setInterval(() => {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                display.innerText = `0${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('loader').style.display = 'none';
+                    alert("Payment Timeout. Try again.");
+                }
+            }, 1000);
+        }
+
+        // DEV CONTROLS (Will trigger from buttons)
+        function forcePaymentSuccess() {
+            clearInterval(timerInterval);
+            let txnId = "TXN-" + Math.floor(Math.random() * 900000000);
+            triggerSuccessScreen("UPI (" + currentMethodName + ")", txnId);
+        }
+        function forcePaymentFail() {
+            clearInterval(timerInterval);
+            document.getElementById('loader').style.display = 'none';
+            alert("Payment Failed / Cancelled.");
+        }
+
+        // INIT PAYMENTS
+        function initiateAppUPI(appName) {
+            if (totalAmount == 0) return alert("Cart is empty!");
+
+            // Try to open phone UPI apps
+            let adminUpi = localStorage.getItem('adminUpiId') || 'admin@okhdfcbank';
+            let upiLink = `upi://pay?pa=${adminUpi}&pn=AmazonStore&am=${totalAmount}&cu=INR`;
+            window.location.href = upiLink;
+
+            startTimer(appName);
+        }
+
+        function initiateManualUPI() {
+            let upiId = document.getElementById('manualUpiId').value;
+            if (!upiId.includes('@')) return alert("Enter valid UPI ID");
+            if (totalAmount == 0) return alert("Cart is empty!");
+            startTimer(upiId);
+        }
+
+        function simulateGeneralPayment(methodName) {
+            if (totalAmount == 0) return alert("Cart is empty!");
+            startTimer(methodName);
+        }
+
+        function processCOD() {
+            if (totalAmount == 0) return alert("Cart is empty!");
+            triggerSuccessScreen("Cash on Delivery (COD)", "N/A");
+        }
+    </script>
+</body>
+
+</html>

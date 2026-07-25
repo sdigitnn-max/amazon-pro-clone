@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon.in : Pro Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 1. MAIN NAVBAR -->
+    <header class="navbar">
+        <div class="nav-item nav-logo">
+            <h2>amazon<span>.in</span></h2>
+        </div>
+        <div class="nav-item nav-location">
+            <span style="font-size: 18px;">📍</span>
+            <div class="loc-text">
+                <span class="loc-line-1">Delivering to Karnal 132037</span>
+                <span class="loc-line-2">Update location</span>
+            </div>
+        </div>
+        <div class="nav-search">
+            <select class="search-select">
+                <option>All</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search Amazon.in">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item"><span class="nav-text-small">🇮🇳 EN</span></div>
+            <a href="index.html" class="nav-item" id="account-link" style="text-decoration: none;">
+                <span class="nav-text-small" id="user-display">Hello, sign in</span>
+                <span class="nav-text-bold">Account & Lists</span>
+            </a>
+            <a href="orders.html" class="nav-item" style="text-decoration: none;">
+                <span class="nav-text-small">Returns</span>
+                <span class="nav-text-bold">& Orders</span>
+            </a>
+            <a href="cart.html" class="nav-item nav-cart" style="text-decoration: none;">
+                <span id="cart-count"
+                    style="color:#f08804; font-size:18px; font-weight:bold; margin-right:5px;">0</span>
+                <span class="nav-text-bold">Cart</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. SUB NAVBAR -->
+    <nav class="sub-navbar">
+        <a href="#" style="font-weight: bold;">☰ All</a>
+        <a href="#">Fresh</a>
+        <a href="#">Prime Video</a>
+        <a href="#">Sell</a>
+        <a href="#">Bestsellers</a>
+        <a href="#">Today's Deals</a>
+        <a href="#">Electronics</a>
+    </nav>
+
+    <!-- 3. MAIN CONTENT -->
+    <!-- 3. MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- AUTO SLIDING HERO BANNER (As it is) -->
+        <div class="hero-banner">
+            <div class="slider-container">
+                <div class="slide active" style="background: linear-gradient(90deg, #ff9900, #ff5e62);">
+                    <div class="slide-content">
+                        <h1>🔥 90% OFF MEGA SALE</h1>
+                        <p>On All Electronics & Gadgets</p>
+                    </div>
+                </div>
+                <div class="slide" style="background: linear-gradient(90deg, #00c6ff, #0072ff);">
+                    <div class="slide-content">
+                        <h1>🎁 BUY 1 GET 3 FREE</h1>
+                        <p>Limited Time Fashion Offer</p>
+                    </div>
+                </div>
+                <div class="slide" style="background: linear-gradient(90deg, #11998e, #38ef7d);">
+                    <div class="slide-content">
+                        <h1>🍀 LUCKY 1% DEAL</h1>
+                        <p>Special Mystery Discounts Inside</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop-cards-grid">
+            <!-- Card 1: Appliances (Updated with Placeholders for Real Images) -->
+            <div class="shop-card" onclick="window.location.href='product.html?id=102'">
+                <h2>Appliances for your home | Up to 55% off</h2>
+                <div class="card-grid-2x2">
+                    <!-- Yahan apni actual AC, Fridge ki images lagayein -->
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08RDL6H79._SY116_CB667322346_.jpg">
+                        <p>Air conditioners</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B08RDL6H79._SY116_CB667322346_.jpg">
+                        <p>Refrigerators</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-186x116--B07G5J5FYP._SY116_CB667322346_.jpg">
+                        <p>Microwaves</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/186x116---wm._SY116_CB667322346_.jpg">
+                        <p>Washing machines</p>
+                    </div>
+                </div>
+                <a href="product.html?id=102" class="card-link" style="margin-top: 15px;">See more</a>
+            </div>
+
+            <!-- Card 2: Essentials (Cleaning) -->
+            <div class="shop-card" onclick="window.location.href='product.html?id=103'">
+                <h2>Starting ₹49 | Deals on home essentials</h2>
+                <div class="card-grid-2x2">
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Wipes_low_res_V1._SY116_CB549138744_.jpg">
+                        <p>Cleaning supplies</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Shower_heads_low_res_V1._SY116_CB549138744_.jpg">
+                        <p>Bathroom accessories</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Tools_low_res_V1._SY116_CB549138744_.jpg">
+                        <p>Hardware tools</p>
+                    </div>
+                    <div class="grid-item"><img
+                            src="https://images-eu.ssl-images-amazon.com/images/G/31/img18/HomeImprovement/harsmisc/2025/March/Wallpapers_low_res_V1._SY116_CB549138744_.jpg">
+                        <p>Towels</p>
+                    </div>
+                </div>
+                <a href="product.html?id=103" class="card-link" style="margin-top: 15px;">See more</a>
+            </div>
+
+            <div class="shop-card" onclick="window.location.href='product.html?id=101'">
+                <h2>Up to 75% off | Deals on headphones</h2>
+                <img src="https://m.media-amazon.com/images/I/711l4y8aNlL._AC_SY170_.jpg" class="card-single-img"
+                    style="object-fit: contain; padding: 10px;">
+                <a href="product.html?id=101" class="card-link">See all offers</a>
+            </div>
+
+            <div class="shop-card" onclick="window.location.href='product.html?id=104'">
+                <h2>Bestseller Smartwatch</h2>
+                <img src="https://m.media-amazon.com/images/I/71XWkekSbCL._SL1500_.jpg" class="card-single-img"
+                    style="object-fit: contain; padding: 10px;">
+                <a href="product.html?id=104" class="card-link">Shop now</a>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- NAYA SECTION: 98% BIG LOOT SPECIAL FAST DISCOUNT -->
+        <!-- ============================================== -->
+        <div class="loot-section-container">
+            <h2 class="loot-title">98% big loot special fast discount <a href="#">See all offers</a></h2>
+            <div class="loot-horizontal-slider">
+
+                <!-- Product 1: S25 Ultra -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=201'">
+                    <img src="https://m.media-amazon.com/images/I/71tl8pu4fKL._SL1500_.jpg" alt="S25 Ultra">
+                    <div class="loot-badge">99% off</div>
+                </div>
+
+                <!-- Product 2: OnePlus 13 -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=202'">
+                    <img src="https://m.media-amazon.com/images/I/71vRZZ+FCiL._SL1500_.jpg" alt="OnePlus 13">
+                    <div class="loot-badge">99% off</div>
+                </div>
+
+                <!-- Product 3: Spigen Case -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=203'">
+                    <img src="https://m.media-amazon.com/images/I/71KnJj9BPWL._SY450_.jpg" alt="Spigen Case">
+                    <div class="loot-badge">72% off</div>
+                </div>
+
+                <!-- Product 4: OnePlus N6 -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=204'">
+                    <img src="https://m.media-amazon.com/images/I/41zFO3p9wpL._SY300_SX300_QL70_FMwebp_.jpg"
+                        alt="OnePlus N6">
+                    <div class="loot-badge">98% off</div>
+                </div>
+
+                <!-- Product 5: Galaxy M47 -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=205'">
+                    <img src="https://m.media-amazon.com/images/I/41HVXzQVQiL._SY300_SX300_QL70_FMwebp_.jpg"
+                        alt="Galaxy M47">
+                    <div class="loot-badge">99% off</div>
+                </div>
+
+                <!-- Product 6: S26 Ultra -->
+                <div class="loot-item" onclick="window.location.href='product.html?id=206'">
+                    <img src="https://m.media-amazon.com/images/I/41HVXzQVQiL._SY300_SX300_QL70_FMwebp_.jpg"
+                        alt="S26 Ultra">
+                    <div class="loot-badge">99% off</div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <!-- ============================================== -->
+    <!-- AMAZON PROFESSIONAL FOOTER -->
+    <!-- ============================================== -->
+    <footer class="amazon-footer">
+        <!-- Back to Top Button -->
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            Back to top
+        </div>
+
+        <!-- Footer Links Container -->
+        <div class="footer-links-container">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">About Amazon</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">Amazon Science</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell on Amazon</a></li>
+                    <li><a href="#">Sell under Amazon Accelerator</a></li>
+                    <li><a href="#">Protect and Build Your Brand</a></li>
+                    <li><a href="#">Amazon Global Selling</a></li>
+                    <li><a href="#">Supply to Amazon</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Fulfilment by Amazon</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                    <li><a href="#">Amazon Pay on Merchants</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Returns Centre</a></li>
+                    <li><a href="#">Recalls and Product Safety Alerts</a></li>
+                    <li><a href="#">100% Purchase Protection</a></li>
+                    <li><a href="#">Amazon App Download</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom (Logo & Settings) -->
+        <div class="footer-bottom">
+            <div class="footer-logo">
+                <h2>amazon<span>.in</span></h2>
+            </div>
+            <div class="footer-settings">
+                <button class="settings-btn">🌐 English</button>
+                <button class="settings-btn">🇮🇳 India</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

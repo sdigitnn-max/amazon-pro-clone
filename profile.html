@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Account - Amazon.in</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .account-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .account-container h1 {
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .account-card {
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .account-card:hover {
+            background: #f7fafa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .account-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .card-content h3 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #0f1111;
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #565959;
+        }
+
+        /* Profile Edit Form Styles */
+        .profile-edit-section {
+            display: none;
+            /* Yahan se form by default hide ho jayega */
+            background: white;
+            padding: 25px;
+            border: 1px solid #d5d9d9;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-edit-section h2 {
+            font-weight: 400;
+            border-bottom: 1px solid #e7e7e7;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            border: 1px solid #888C8C;
+            border-radius: 4px;
+        }
+
+        .input-group input:disabled {
+            background: #f0f2f2;
+            cursor: not-allowed;
+            border: 1px solid #d5d9d9;
+        }
+
+        .btn-save {
+            background: #ffd814;
+            border: 1px solid #fcd200;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-logout {
+            background: #f8f8f8;
+            border: 1px solid #d5d9d9;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #d9534f;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="nav-item nav-logo">
+            <h2>amazon<span>.in</span></h2>
+        </div>
+        <div class="nav-right" style="margin-left: auto;">
+            <a href="home.html" style="color: white; margin-right: 20px;">Home</a>
+            <a href="orders.html" class="nav-item" style="text-decoration: none;">
+                <span class="nav-text-small">Returns</span><span class="nav-text-bold">& Orders</span>
+            </a>
+            <a href="cart.html" class="nav-item nav-cart" style="text-decoration: none;">
+                <span id="cart-count"
+                    style="color:#f08804; font-size:18px; font-weight:bold; margin-right:5px;">0</span><span
+                    class="nav-text-bold">Cart</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="account-container">
+        <h1>Your Account</h1>
+
+        <!-- Top Grid Section With Working Icons -->
+        <div class="account-grid">
+            <div class="account-card" onclick="window.location.href='orders.html'">
+                <img src="https://cdn-icons-png.flaticon.com/512/3496/3496155.png" alt="Orders">
+                <div class="card-content">
+                    <h3>Your Orders</h3>
+                    <p>Track, return, or buy things again</p>
+                </div>
+            </div>
+
+            <div class="account-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" alt="Security">
+                <div class="card-content">
+                    <h3>Login & security</h3>
+                    <p>Edit login, name, and mobile number</p>
+                </div>
+            </div>
+
+            <div class="account-card">
+                <img src="https://m.media-amazon.com/images/G/31/x-locale/cs/help/images/gateway/Prime_clear-bg._CB615160877_.png"
+                    alt="Prime">
+                <div class="card-content">
+                    <h3>Prime</h3>
+                    <p>View benefits and payment settings</p>
+                </div>
+            </div>
+
+            <div class="account-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/535/535137.png" alt="Addresses">
+                <div class="card-content">
+                    <h3>Your Addresses</h3>
+                    <p>Edit addresses for orders and gifts</p>
+                </div>
+            </div>
+
+            <div class="account-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1082/1082467.png" alt="Contact Us">
+                <div class="card-content">
+                    <h3>Contact Us</h3>
+                    <p>Contact our customer service via phone or chat</p>
+                </div>
+            </div>
+
+            <!-- Click karne par form open hoga -->
+            <div class="account-card" onclick="openProfileForm()">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+                <div class="card-content">
+                    <h3>Your Profile</h3>
+                    <p>Manage your personal details</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Details Edit Section (Hidden By Default) -->
+        <div class="profile-edit-section" id="profile-edit">
+            <h2>Personal Details</h2>
+            <form id="profile-form">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="prof-name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address (Primary)</label>
+                    <input type="email" id="prof-email" disabled title="Email cannot be changed">
+                </div>
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input type="text" id="prof-phone" placeholder="Enter 10-digit mobile number">
+                </div>
+                <div class="input-group">
+                    <label>Default Address</label>
+                    <input type="text" id="prof-address" placeholder="House No, Street, City">
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button type="button" class="btn-save" onclick="saveProfile()">Save Changes</button>
+                    <button type="button" class="btn-logout" onclick="logoutUser()">Sign Out</button>
+                    <span id="save-msg"
+                        style="color: #007600; font-size: 13px; font-weight: bold; margin-left: 10px; display: none;">✅
+                        Saved successfully</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Form open karne ka logic
+        function openProfileForm() {
+            const formSection = document.getElementById('profile-edit');
+            formSection.style.display = 'block';
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Load Profile Data
+        window.onload = function () {
+            let isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Fill Data
+            document.getElementById('prof-name').value = localStorage.getItem('userName') || '';
+            document.getElementById('prof-email').value = localStorage.getItem('userEmail') || '';
+            document.getElementById('prof-phone').value = localStorage.getItem('userPhone') || '';
+            document.getElementById('prof-address').value = localStorage.getItem('userAddress') || '';
+
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+        };
+
+        // Save Profile
+        function saveProfile() {
+            localStorage.setItem('userName', document.getElementById('prof-name').value);
+            localStorage.setItem('userPhone', document.getElementById('prof-phone').value);
+            localStorage.setItem('userAddress', document.getElementById('prof-address').value);
+
+            let msg = document.getElementById('save-msg');
+            msg.style.display = 'inline';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+
+            if (typeof checkLoginStatus === 'function') {
+                checkLoginStatus();
+            }
+        }
+
+        // Logout
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

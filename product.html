@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon.in : Product Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadProductPage()">
+    <!-- Navbar (Same as Home) -->
+    <header class="navbar">
+        <div class="nav-item nav-logo">
+            <h2>amazon<span>.in</span></h2>
+        </div>
+        <div class="nav-search"><input type="text" class="search-input"><button class="search-btn">🔍</button></div>
+        <div class="nav-right">
+            <a href="home.html" style="color: white; margin-right: 20px;">Home</a>
+            <!-- Yahan href="#" ko href="cart.html" kiya hai -->
+            <a href="cart.html" class="nav-item nav-cart">
+                <span id="cart-count"
+                    style="color:#f08804; font-size:18px; font-weight:bold; margin-right:5px;">0</span>
+                <span class="nav-text-bold">Cart</span>
+            </a>
+            <!-- YAHAN SE CHANGE KARIYE -->
+            <a href="index.html" class="nav-item" id="account-link" style="text-decoration: none;">
+                <span class="nav-text-small" id="user-display">Hello, sign in</span>
+                <span class="nav-text-bold">Account & Lists</span>
+            </a>
+            <!-- YAHAN TAK -->
+        </div>
+    </header>
+
+    <!-- MAIN PRODUCT SECTION -->
+    <div class="product-main-layout">
+
+        <!-- Column 1: Images -->
+        <div class="product-image-section">
+            <div class="thumbnails" id="thumb-gallery">
+                <!-- JS se images aayengi -->
+            </div>
+            <div class="main-image">
+                <img id="main-img" src="" alt="Product">
+            </div>
+        </div>
+
+        <!-- Column 2: Details -->
+        <div class="product-info-section">
+            <h1 id="prod-title">Loading...</h1>
+            <a href="#" class="rating-text">Visit the Store</a>
+            <p style="color: #007185; font-size: 14px;">★★★★☆ 12,130 ratings</p>
+
+            <div class="price-block">
+                <span class="price-discount" id="prod-discount">-0%</span>
+                <span style="font-size: 14px; position:relative; top:-8px;">₹</span>
+                <span class="price-amount" id="prod-price">0</span>
+                <p class="mrp-text" id="prod-mrp">M.R.P.: ₹0</p>
+                <p style="font-size: 14px; margin-top:5px;">Inclusive of all taxes</p>
+            </div>
+
+            <h3 style="margin-top: 15px; font-size: 16px;">About this item</h3>
+            <ul class="feature-list" id="prod-desc">
+                <!-- JS se bullet points aayenge -->
+            </ul>
+        </div>
+
+        <!-- Column 3: Buy Box -->
+        <div class="product-buy-box">
+            <div style="font-size: 14px; color: #565959;">Total price:</div>
+            <div class="buy-box-price">₹<span id="buy-price">0</span></div>
+            <p style="color: #007185; font-size: 14px; margin-top: 10px;">FREE delivery <b>Tomorrow</b>.</p>
+            <p style="font-size: 14px; margin-bottom: 15px;">Delivering to Karnal 132037 - <a href="#">Update
+                    location</a></p>
+
+            <p class="in-stock">In stock</p>
+
+            <div style="margin: 15px 0;">
+                <label style="font-size: 13px;">Quantity: </label>
+                <select id="qty-select" class="qty-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <!-- Yahan onclick event add kiya hai -->
+            <button id="add-to-cart-btn" class="btn-yellow" onclick="addToCartAction()">Add to Cart</button>
+            <button class="btn-orange" onclick="buyNowAction()">Buy Now</button>
+
+            <div id="success-msg" class="success-msg">✅ Added to Cart</div>
+
+            <p style="font-size: 12px; color: #565959; text-align: center; margin-top: 10px;">Secure
+                transaction<br>Ships from Amazon</p>
+        </div>
+    </div>
+
+    <!-- RELATED PRODUCTS SECTION (Bottom Slider) -->
+    <div class="related-products-container">
+        <h2>Customers who viewed this item also viewed</h2>
+        <div class="related-slider" id="related-slider">
+            <!-- JS se baaki bache products yahan slider me aayenge -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
